@@ -1,0 +1,30 @@
+# Snakemake
+.snakemake/
+
+# Conda
+.conda/
+
+# DVC
+/resources/*
+!/resources/*.dvc
+!/resources/.gitignore
+
+# Test results
+/test/results/
+
+# Logs
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# R
+.Rhistory
+.Rdata
+.RData
+*.Rproj.user/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,26 @@
+from pathlib import Path
+import pandas as pd
+
+# Global paths from config
+out_dir = Path(config['outs']['results'])
+log_dir = Path(config['outs']['logs'])
+
+# Load capture list
+captures = pd.read_csv(config['deps']['captures'])['capture'].tolist()
+
+# Include rule files
+include: "rules/common.smk"
+include: "rules/create_seurat.smk"
+include: "rules/merge.smk"
+
+# Build target list
+targets = [out_dir / "merged.qs"]
+
+# Optionally add metadata if configured
+if config.get('deps', {}).get('metadata'):
+    include: "rules/metadata.smk"
+    targets = [out_dir / "merged_annotated.qs"]
+
+rule all:
+    input:
+        targets

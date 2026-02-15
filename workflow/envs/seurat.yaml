@@ -1,0 +1,15 @@
+name: seurat_5.1
+
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies:
+  - r-seurat=5.1
+  - r-seuratobject
+  - r-qs
+  - r-tidyverse
+  - r-readr
+  - r-dplyr
+  - r-tibble

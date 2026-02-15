@@ -1,0 +1,42 @@
+# mkseurat Configuration Template
+# Edit this file according to your dataset structure
+
+# Dependencies
+deps:
+  # Path to filtered feature barcode matrices from Cell Ranger
+  # Each capture should be a subdirectory containing barcodes.tsv.gz, features.tsv.gz, matrix.mtx.gz
+  cellranger: "data/sc/cellranger/count/filtered"
+  
+  # CSV file listing captures to process (requires 'capture' column)
+  captures: "config/chromium-preprocessing/captures.csv"
+  
+  # [Optional] Path to sample assignment files from SNP demux
+  # Each capture should have {capture}/cell_assignment.tsv
+  demux: "data/snp/demux/assignment"
+  
+  # [Optional] Path to cell type annotation files
+  # Each capture should have {capture}/cell_types.csv  
+  annotation: "data/sc/cellranger/annotation"
+  
+  # [Optional] Path to ambient RNA profile files
+  # Each capture should have {capture}/ambient_summary.csv
+  ambient: "data/snp/demux/vireo"
+  
+  # [Optional] Path to experimental metadata CSV
+  # Will be joined to cell metadata on the 'assignment' column
+  # metadata: "data/meta/experiment.csv"
+
+# Outputs
+outs:
+  results: "data/sc/seurat"
+  logs: "logs/mkseurat"
+
+# Parameters
+params:
+  # Modality handling for multimodal data:
+  # - "auto": detect automatically (default)
+  # - "Gene Expression": use gene expression only
+  modality: "auto"
+  
+  # Column to join metadata on (default: "assignment")
+  metadata_join_column: "assignment"
