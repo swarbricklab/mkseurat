@@ -18,10 +18,10 @@ set-resources:
     mem: "8GB"
     runtime: 30
   merge_captures:
-    threads: 1
-    mem: "32GB"
+    threads: 16
+    mem: "128GB"
     runtime: 60
   attach_metadata:
-    threads: 1
-    mem: "16GB"
+    threads: 4
+    mem: "32GB"
     runtime: 30

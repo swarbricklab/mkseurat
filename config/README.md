@@ -42,7 +42,7 @@ Edit the config file to match your dataset structure.
 | Key | Description | Default |
 |-----|-------------|---------|
 | `params.modality` | How to handle multimodal data (`auto`, `Gene Expression`) | `auto` |
-| `params.metadata_join_column` | Column to join metadata on | `assignment` |
+| `params.metadata_join_column` | Column in metadata CSV to match against `sample_id` in the Seurat object | `sample_id` |
 
 ## Captures CSV
 
@@ -62,9 +62,11 @@ NC003
 If using SNP-based demultiplexing, each capture should have a `cell_assignment.tsv` file with columns:
 - `barcode`: Cell barcode
 - `status`: Assignment status (singlet, doublet, unassigned)
-- `assignment`: Sample assignment
+- `assignment`: Sample assignment (will be stored as `sample_id` in the Seurat object)
 
 ## Metadata file
 
-Optional experimental metadata CSV should have a column matching `params.metadata_join_column` (default: `assignment` or `sample`).
+Optional experimental metadata CSV should have a column matching `params.metadata_join_column` (default: `sample_id`).
+The Seurat object always uses `sample_id` for sample identifiers. If your metadata CSV uses a different column name,
+specify it in `params.metadata_join_column` and it will be renamed for the join.
 Additional columns will be added to cell metadata in the Seurat object.

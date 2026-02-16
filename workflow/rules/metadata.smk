@@ -14,7 +14,7 @@ rule attach_metadata:
     log:
         log_dir / "attach_metadata.log"
     params:
-        join_column = config.get('params', {}).get('metadata_join_column', 'assignment')
+        join_column = config.get('params', {}).get('metadata_join_column', 'sample_id')
     conda:
         "../envs/seurat.yaml"
     script:

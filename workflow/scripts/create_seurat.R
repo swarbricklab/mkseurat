@@ -34,7 +34,7 @@ load_assignments <- function(capture, barcodes, assignment_root) {
         message("No assignment root configured. Using capture as sample ID.")
         return(data.frame(
             status = rep("singlet", length(barcodes)),
-            assignment = rep(capture, length(barcodes)),
+            sample_id = rep(capture, length(barcodes)),
             row.names = barcodes
         ))
     }
@@ -46,12 +46,13 @@ load_assignments <- function(capture, barcodes, assignment_root) {
         message("No sample assignments found. Using capture as sample ID.")
         return(data.frame(
             status = rep("singlet", length(barcodes)),
-            assignment = rep(capture, length(barcodes)),
+            sample_id = rep(capture, length(barcodes)),
             row.names = barcodes
         ))
     }
     
     assignments <- read_tsv(assignment_path, show_col_types = FALSE) %>%
+        rename(sample_id = assignment) %>%
         column_to_rownames("barcode")
     message("Loaded assignments for ", nrow(assignments), " cells")
     return(assignments)

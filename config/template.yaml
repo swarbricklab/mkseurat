@@ -38,5 +38,7 @@ params:
   # - "Gene Expression": use gene expression only
   modality: "auto"
   
-  # Column to join metadata on (default: "assignment")
-  metadata_join_column: "assignment"
+  # Column in metadata CSV to join on 'sample_id' in the Seurat object (default: "sample_id")
+  # The Seurat object always uses 'sample_id'. If your metadata CSV uses a different column name,
+  # specify it here and it will be renamed to 'sample_id' for the join.
+  metadata_join_column: "sample_id"
